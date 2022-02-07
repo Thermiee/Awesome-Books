@@ -8,8 +8,38 @@ class Book {
   }
 }
 
+function storageAvailable(type) {
+  var storage;
+  try {
+      storage = window[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+  }
+  catch(e) {
+      return e instanceof DOMException && (
+          e.code === 22 ||
+          e.code === 1014 ||
+          e.name === 'QuotaExceededError' ||
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+          (storage && storage.length !== 0);
+  }
+}
+
+function updateLocalStorage() {
+  if (storageAvailable('localStorage')) {
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+}
+
 const books = [];
 const booksList = document.getElementById('books-list');
+const localBooksData = localStorage.getItem('books');
+if (localBooksData) {
+  books.value = JSON.parse(localBooksData);
+}
+
 
 function bookExists(book) {
   for (let i = 0; i < books.length; i++) {
@@ -48,6 +78,7 @@ function addBook(book) {
     console.log('yes');
     books.push(book);
     displayNewElement(book);
+    updateLocalStorage();
     return;
   }
   alert('The Book and Author exist');
@@ -57,6 +88,7 @@ function removeBook(book) {
   for (let i = 0; i < books.length; i++) {
     if (books[i].title === book.title && books[i].author === book.author) {
       books.splice(i, 1);
+      updateLocalStorage();
       return;
     }
   }
@@ -75,4 +107,5 @@ addBookForm.addEventListener('submit', (event) => {
     author: addBookForm.elements.author.value,
   });
 });
+
 
