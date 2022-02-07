@@ -33,13 +33,13 @@ function updateLocalStorage() {
   }
 }
 
-const books = [];
+let books = [];
 const booksList = document.getElementById('books-list');
 const localBooksData = localStorage.getItem('books');
-if (localBooksData) {
-  books.value = JSON.parse(localBooksData);
-}
 
+if (localBooksData) {
+  books = JSON.parse(localBooksData);
+}
 
 function bookExists(book) {
   for (let i = 0; i < books.length; i++) {
