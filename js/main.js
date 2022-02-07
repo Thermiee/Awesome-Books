@@ -23,17 +23,23 @@ function bookExists(book) {
 function displayNewElement(book) {
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
+
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('remove-button');
+  removeButton.textContent = 'Remove';
+
   bookDiv.innerHTML = `
     <h2 class="book-title">${book.title}</h2>
     <p class="book-author">${book.author}</p>
-    <button class="remove-button" id="${book.title + '_' + book.author}">Remove</button>
-    <hr>
   `;
+  bookDiv.appendChild(removeButton);
+  bookDiv.appendChild(document.createElement('hr'));
+
   booksList.appendChild(bookDiv);
 
-  document.getElementById(book.title + '_' + book.author).addEventListener('click', (event) => {
+  removeButton.addEventListener('click', () => {
     removeBook(book);
-    event.target.parentElement.remove();
+    bookDiv.remove();
   });
 }
 
