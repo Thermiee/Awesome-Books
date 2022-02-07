@@ -54,7 +54,7 @@ books.forEach((book) => {
 
 const addBookForm = document.getElementById('add-book-form');
 
-document.querySelector('#add-book-form #add-book').addEventListener('submit', (event) => {
+addBookForm.addEventListener('submit', (event) => {
   event.preventDefault();
   addBook({
     title: addBookForm.elements.title.value,
