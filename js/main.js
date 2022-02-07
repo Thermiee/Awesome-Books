@@ -21,14 +21,20 @@ function bookExists(book) {
 }
 
 function displayNewElement(book) {
-  booksList.innerHTML += `
-    <div class="book">
-        <h2 class="book-title">${book.title}</h2>
-        <p class="book-author">${book.author}</p>
-        <button class="remove-button" id="${book.title + '_' + book.author}">Remove</button>
-        <hr>
-    </div>
+  const bookDiv = document.createElement('div');
+  bookDiv.classList.add('book');
+  bookDiv.innerHTML = `
+    <h2 class="book-title">${book.title}</h2>
+    <p class="book-author">${book.author}</p>
+    <button class="remove-button" id="${book.title + '_' + book.author}">Remove</button>
+    <hr>
   `;
+  booksList.appendChild(bookDiv);
+
+  document.getElementById(book.title + '_' + book.author).addEventListener('click', (event) => {
+    removeBook(book);
+    event.target.parentElement.remove();
+  });
 }
 
 function addBook(book) {
@@ -36,13 +42,6 @@ function addBook(book) {
     console.log('yes');
     books.push(book);
     displayNewElement(book);
-    document.getElementById(book.title + '_' + book.author).addEventListener('click', () => {
-      removeBook(book);
-      booksList.innerHTML = '';
-      books.forEach((book) => {
-        displayNewElement(book);
-      });
-    });
     return;
   }
   alert('The Book and Author exist');
