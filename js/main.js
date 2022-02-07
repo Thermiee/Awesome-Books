@@ -9,6 +9,7 @@ class Book {
 }
 
 const books = [];
+
 function bookExists(book) {
   for (let i=0; i<books.length; i++) {
     if (books[i].title === book.title && books[i].author === book.author) {
@@ -32,3 +33,16 @@ function removeBook(book) {
     }
   }
 }
+
+const booksList = document.getElementById('books-list');
+
+books.forEach((book) => {
+  booksList.innerHTML += `
+    <div class="book">
+        <h2 class="book-title">${book.title}</h2>
+        <p class="book-author">${book.author}</p>
+        <button class="remove-button">Remove</button>
+        <hr>
+    </div>
+  `;
+});
