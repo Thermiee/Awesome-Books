@@ -9,6 +9,7 @@ class Book {
 }
 
 const books = [];
+const booksList = document.getElementById('books-list');
 
 function bookExists(book) {
   for (let i = 0; i < books.length; i++) {
@@ -19,10 +20,8 @@ function bookExists(book) {
   return false;
 }
 
-function addBook(book) {
-  if (!bookExists(book)) {
-    books.push(book);
-    booksList.innerHTML += `
+function displayNewElement (book) {
+  booksList.innerHTML += `
     <div class="book">
         <h2 class="book-title">${book.title}</h2>
         <p class="book-author">${book.author}</p>
@@ -30,6 +29,13 @@ function addBook(book) {
         <hr>
     </div>
   `;
+}
+
+function addBook(book) {
+  if (!bookExists(book)) {
+    console.log('yes');
+    books.push(book);
+    displayNewElement(book);
   }
 }
 
@@ -42,17 +48,16 @@ function removeBook(book) {
   }
 }
 
-const booksList = document.getElementById('books-list');
-
 books.forEach((book) => {
-  booksList.innerHTML += `
-    <div class="book">
-        <h2 class="book-title">${book.title}</h2>
-        <p class="book-author">${book.author}</p>
-        <button class="remove-button">Remove</button>
-        <hr>
-    </div>
-  `;
+  displayNewElement(book);
 });
 
-document.querySelector('#add-book').addEventListener('click', () => {});
+const addBookForm = document.getElementById('add-book-form');
+
+document.querySelector('#add-book-form #add-book').addEventListener('submit', (event) => {
+  event.preventDefault();
+  addBook({
+    title: addBookForm.elements.title.value,
+    author: addBookForm.elements.author.value,
+  });
+});
