@@ -9,9 +9,19 @@ class Book {
 }
 
 const books = [];
+function bookExists(book) {
+  for (let i=0; i<books.length; i++) {
+    if (books[i].title === book.title && books[i].author === book.author) {
+      return true;
+    }
+  }
+  return false;
+}
 
-function addBook(title, author) {
-  books.push(new Book(title, author));
+function addBook(book) {
+  if (!bookExists(book)) {
+    books.push(book);
+  }
 }
 
 function removeBook(book) {
