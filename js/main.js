@@ -1,18 +1,13 @@
-class Book {
-  title;
-  author;
+//Declare books list
+let books = [];
 
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
-}
-
+//Local Storage Functions
 function storageAvailable(type) {
-  var storage;
+  //Check if Storage is available
+  let storage;
   try {
       storage = window[type];
-      var x = '__storage_test__';
+      const x = '__storage_test__';
       storage.setItem(x, x);
       storage.removeItem(x);
       return true;
@@ -28,20 +23,24 @@ function storageAvailable(type) {
 }
 
 function updateLocalStorage() {
+  //Updates the Local Storage
   if (storageAvailable('localStorage')) {
     localStorage.setItem('books', JSON.stringify(books));
   }
 }
 
-let books = [];
-const booksList = document.getElementById('books-list');
 const localBooksData = localStorage.getItem('books');
 
+//Load initially stored data
 if (localBooksData) {
   books = JSON.parse(localBooksData);
 }
 
+//Books Related Values & Functions
+const booksList = document.getElementById('books-list');
+
 function bookExists(book) {
+  //Check if a book exists
   for (let i = 0; i < books.length; i++) {
     if (books[i].title === book.title && books[i].author === book.author) {
       return true;
@@ -50,7 +49,31 @@ function bookExists(book) {
   return false;
 }
 
+function addBook(book) {
+  //Add a new book to the list of books
+  if (!bookExists(book)) {
+    console.log('yes');
+    books.push(book);
+    displayNewElement(book);
+    updateLocalStorage();
+    return;
+  }
+  alert('The Book and Author exist');
+}
+
+function removeBook(book) {
+  //Remove a book from the list of lists
+  for (let i = 0; i < books.length; i++) {
+    if (books[i].title === book.title && books[i].author === book.author) {
+      books.splice(i, 1);
+      updateLocalStorage();
+      return;
+    }
+  }
+}
+
 function displayNewElement(book) {
+  //Shows the added book in html
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
 
@@ -73,31 +96,12 @@ function displayNewElement(book) {
   });
 }
 
-function addBook(book) {
-  if (!bookExists(book)) {
-    console.log('yes');
-    books.push(book);
-    displayNewElement(book);
-    updateLocalStorage();
-    return;
-  }
-  alert('The Book and Author exist');
-}
-
-function removeBook(book) {
-  for (let i = 0; i < books.length; i++) {
-    if (books[i].title === book.title && books[i].author === book.author) {
-      books.splice(i, 1);
-      updateLocalStorage();
-      return;
-    }
-  }
-}
-
+//Display all books when the page is loaded
 books.forEach((book) => {
   displayNewElement(book);
 });
 
+//Add Event Listener on Add Book button
 const addBookForm = document.getElementById('add-book-form');
 
 addBookForm.addEventListener('submit', (event) => {
@@ -107,5 +111,3 @@ addBookForm.addEventListener('submit', (event) => {
     author: addBookForm.elements.author.value,
   });
 });
-
-
