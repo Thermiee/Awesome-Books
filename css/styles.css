@@ -1,17 +1,29 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: cursive;
 }
 
 #headline {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
 #headline h1 {
   padding: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   text-align: center;
+}
+
+.book {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.book:nth-child(2n+1) {
+  background-color: #ddd;
 }
 
 .book-title,
@@ -20,35 +32,38 @@
   margin: 8px;
 }
 
-.book-author, .book-title {
+.book-author,
+.book-title {
   font-size: 1.2rem;
   font-weight: normal;
 }
 
-#add-book-form {
-  margin-top: 30px;
+.book-title:hover {
+  animation-name: titleShake;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
 }
 
 #books-list {
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   border: 3px solid;
+  border-radius: 5px;
+  margin: 0 10%;
 }
 
-.book {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bookstore {
+.book-store {
   display: flex;
   align-items: baseline;
 }
 
 hr {
-  margin: 20px auto;
-  width: 20%;
-  
+  margin: 20px auto 70px;
+  width: 100px;
+  border: 2px solid;
+  border-radius: 5px;
 }
 
 #input-form {
@@ -73,8 +88,49 @@ hr {
 #input-form input[type="text"] {
   width: 240px;
   padding: 5px;
+  border: 3px solid;
+  border-radius: 3px;
 }
 
-button.remove-button{
- padding: 5px 10px;
+button.remove-button {
+  padding: 5px 10px;
+}
+
+.remove-button,
+#input-form input[type="submit"] {
+  transition: 300ms;
+  border: 3px solid;
+  border-radius: 3px;
+  box-shadow: 4px 4px 0 1px black;
+}
+
+.remove-button:hover,
+#input-form input[type="submit"]:hover {
+  transform: scale(1.05);
+}
+
+@keyframes titleShake {
+  0% {
+    transform: translateX(-5px);
+  }
+
+  5% {
+    transform: translateX(10px);
+  }
+
+  10% {
+    transform: translateX(-5px);
+  }
+
+  15% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.empty-library {
+  margin: auto;
 }

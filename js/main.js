@@ -1,4 +1,5 @@
 // Local Storage Functions
+// eslint-disable-next-line max-classes-per-file
 function storageAvailable(type) {
   // Check if Storage is available
   let storage;
@@ -10,7 +11,7 @@ function storageAvailable(type) {
     return true;
   } catch (e) {
     return e instanceof DOMException && (
-        e.code === 22
+      e.code === 22
         || e.code === 1014
         || e.name === 'QuotaExceededError'
         || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
@@ -21,6 +22,7 @@ function storageAvailable(type) {
 class Book {
   // Book Class has a title and author
   title;
+
   author;
 
   constructor(title, author) {
@@ -46,14 +48,14 @@ class Library {
   addBook(book) {
     // Add a new book to the list of books
     if (!this.bookExists(book)) {
-      this.books.push(book);
+      // eslint-disable-next-line no-use-before-define
       displayNewElement(book);
+      this.books.push(book);
       this.updateLocalStorage();
       return;
     }
     alert('The Book and Author exist');
   }
-
 
   removeBook(book) {
     // Remove a book from the list of lists
@@ -95,26 +97,41 @@ function displayNewElement(book) {
   removeButton.textContent = 'Remove';
 
   bookDiv.innerHTML = `
-  <div class="bookstore">
+  <div class="book-store">
     <h2 class="book-title">"${book.title}"</h2>
     <p class="book-author">by ${book.author}</p>
-    </div>
+  </div>
   `;
   bookDiv.appendChild(removeButton);
+
+  if (library.books.length === 0) {
+    booksList.innerHTML = '';
+  }
 
   booksList.appendChild(bookDiv);
 
   removeButton.addEventListener('click', () => {
     library.removeBook(book);
     bookDiv.remove();
+
+    if (library.books.length === 0) {
+      booksList.innerHTML = `
+        <p class="empty-library">No Books in the Library.</p>
+      `;
+    }
   });
 }
 
-
 // Display all books when the page is loaded
-library.books.forEach((book) => {
-  displayNewElement(book);
-});
+if (library.books.length === 0) {
+  booksList.innerHTML = `
+        <p class="empty-library">No Books in the Library.</p>
+      `;
+} else {
+  library.books.forEach((book) => {
+    displayNewElement(book);
+  });
+}
 
 // Add Event Listener on Add Book button
 const addBookForm = document.getElementById('add-book-form');
