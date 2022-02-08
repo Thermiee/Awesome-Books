@@ -18,13 +18,6 @@ function storageAvailable(type) {
   }
 }
 
-function updateLocalStorage() {
-  // Updates the Local Storage
-  if (storageAvailable('localStorage')) {
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-}
-
 class Book {
   // Book Class has a title and author
   title;
@@ -42,8 +35,8 @@ class Library {
 
   bookExists(book) {
     // Check if a book exists
-    for (let i = 0; i < books.length; i += 1) {
-      if (books[i].title === book.title && books[i].author === book.author) {
+    for (let i = 0; i < this.books.length; i += 1) {
+      if (this.books[i].title === book.title && this.books[i].author === book.author) {
         return true;
       }
     }
@@ -53,9 +46,9 @@ class Library {
   addBook(book) {
     // Add a new book to the list of books
     if (!this.bookExists(book)) {
-      books.push(book);
+      this.books.push(book);
       displayNewElement(book);
-      updateLocalStorage();
+      this.updateLocalStorage();
       return;
     }
     alert('The Book and Author exist');
@@ -64,12 +57,19 @@ class Library {
 
   removeBook(book) {
     // Remove a book from the list of lists
-    for (let i = 0; i < books.length; i += 1) {
-      if (books[i].title === book.title && books[i].author === book.author) {
-        books.splice(i, 1);
-        updateLocalStorage();
+    for (let i = 0; i < this.books.length; i += 1) {
+      if (this.books[i].title === book.title && this.books[i].author === book.author) {
+        this.books.splice(i, 1);
+        this.updateLocalStorage();
         return;
       }
+    }
+  }
+
+  updateLocalStorage() {
+    // Updates the Local Storage
+    if (storageAvailable('localStorage')) {
+      localStorage.setItem('books', JSON.stringify(this.books));
     }
   }
 }
@@ -80,7 +80,7 @@ const library = new Library();
 // Load initially stored data
 const localBooksData = localStorage.getItem('books');
 if (localBooksData) {
-  books = JSON.parse(localBooksData);
+  library.books = JSON.parse(localBooksData);
 }
 
 // Books Related HTML Values & Functions
@@ -111,7 +111,7 @@ function displayNewElement(book) {
 
 
 // Display all books when the page is loaded
-books.forEach((book) => {
+library.books.forEach((book) => {
   displayNewElement(book);
 });
 
