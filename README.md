@@ -1,56 +1,51 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Awesome Books
+> A book collection store
 
-> Description the project.
+![screenshot](./images/app_screenshot.png)
 
 
 ## Built With
+- HTML
+- CSS
+- JS
 
-- Major languages
-- Frameworks
-- Technologies used
+## Live Demo
 
-## Live Demo (if available)
+[Live Demo Link](https://thermiee.github.io/Awesome-Books/)
 
-[Live Demo Link](https://livedemo.com)
+### Prerequisites
+The basic requirements for building the executable are:
+* A working browser application (Google chrome, Mozilla Fire fox, Microsoft edge ...)
 
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
+#### Cloning the project
+```
+https://github.com/Thermiee/Awesome-Books
+```
 
 ### Usage
 
-### Run tests
+Open index.html in Chrome
 
-### Deployment
+## Author1
+
+👤 **Emmanuel Jolugbo**
+
+- GitHub: [@Thermiee](https://github.com/thermiee)
 
 
+## Author2
 
-## Authors
+👤 **Awais Amjed**
 
-👤 **Author1**
+- GitHub: [Awais Amjed](https://github.com/awais-amjed)
+- Website: [Coding Fries](https://codingfries.com)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/awais-amjed)
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
@@ -64,9 +59,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Microverse
 
 ## 📝 License
 
