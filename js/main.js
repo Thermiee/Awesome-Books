@@ -1,6 +1,6 @@
 // Local Storage Functions
 // eslint-disable-next-line max-classes-per-file
-function storageAvailable(type) {
+const storageAvailable = (type) => {
   // Check if Storage is available
   let storage;
   try {
@@ -17,7 +17,7 @@ function storageAvailable(type) {
         || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
       && (storage && storage.length !== 0);
   }
-}
+};
 
 class Book {
   // Book Class has a title and author
@@ -34,6 +34,10 @@ class Book {
 class Library {
   // Library class consists of a list of books
   books = [];
+
+  constructor(books) {
+    this.books = books;
+  }
 
   bookExists(book) {
     // Check if a book exists
@@ -87,7 +91,7 @@ if (localBooksData) {
 
 // Books Related HTML Values & Functions
 const booksList = document.getElementById('books-list');
-function displayNewElement(book) {
+const displayNewElement = (book) => {
   // Shows the added book in html
   const bookDiv = document.createElement('div');
   bookDiv.classList.add('book');
@@ -120,7 +124,7 @@ function displayNewElement(book) {
       `;
     }
   });
-}
+};
 
 // Display all books when the page is loaded
 if (library.books.length === 0) {
