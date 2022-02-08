@@ -1,6 +1,3 @@
-// Declare books list
-let books = [];
-
 // Local Storage Functions
 function storageAvailable(type) {
   // Check if Storage is available
@@ -13,10 +10,10 @@ function storageAvailable(type) {
     return true;
   } catch (e) {
     return e instanceof DOMException && (
-      e.code === 22
-      || e.code === 1014
-      || e.name === 'QuotaExceededError'
-      || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
+        e.code === 22
+        || e.code === 1014
+        || e.name === 'QuotaExceededError'
+        || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
       && (storage && storage.length !== 0);
   }
 }
@@ -28,37 +25,66 @@ function updateLocalStorage() {
   }
 }
 
-const localBooksData = localStorage.getItem('books');
+class Book {
+  // Book Class has a title and author
+  title;
+  author;
+
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
+
+class Library {
+  // Library class consists of a list of books
+  books = [];
+
+  bookExists(book) {
+    // Check if a book exists
+    for (let i = 0; i < books.length; i += 1) {
+      if (books[i].title === book.title && books[i].author === book.author) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  addBook(book) {
+    // Add a new book to the list of books
+    if (!this.bookExists(book)) {
+      books.push(book);
+      displayNewElement(book);
+      updateLocalStorage();
+      return;
+    }
+    alert('The Book and Author exist');
+  }
+
+
+  removeBook(book) {
+    // Remove a book from the list of lists
+    for (let i = 0; i < books.length; i += 1) {
+      if (books[i].title === book.title && books[i].author === book.author) {
+        books.splice(i, 1);
+        updateLocalStorage();
+        return;
+      }
+    }
+  }
+}
+
+// Initialize the Library
+const library = new Library();
 
 // Load initially stored data
+const localBooksData = localStorage.getItem('books');
 if (localBooksData) {
   books = JSON.parse(localBooksData);
 }
 
-// Books Related Values & Functions
+// Books Related HTML Values & Functions
 const booksList = document.getElementById('books-list');
-
-function bookExists(book) {
-  // Check if a book exists
-  for (let i = 0; i < books.length; i += 1) {
-    if (books[i].title === book.title && books[i].author === book.author) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function removeBook(book) {
-  // Remove a book from the list of lists
-  for (let i = 0; i < books.length; i += 1) {
-    if (books[i].title === book.title && books[i].author === book.author) {
-      books.splice(i, 1);
-      updateLocalStorage();
-      return;
-    }
-  }
-}
-
 function displayNewElement(book) {
   // Shows the added book in html
   const bookDiv = document.createElement('div');
@@ -78,21 +104,11 @@ function displayNewElement(book) {
   booksList.appendChild(bookDiv);
 
   removeButton.addEventListener('click', () => {
-    removeBook(book);
+    library.removeBook(book);
     bookDiv.remove();
   });
 }
 
-function addBook(book) {
-  // Add a new book to the list of books
-  if (!bookExists(book)) {
-    books.push(book);
-    displayNewElement(book);
-    updateLocalStorage();
-    return;
-  }
-  alert('The Book and Author exist');
-}
 
 // Display all books when the page is loaded
 books.forEach((book) => {
@@ -101,11 +117,7 @@ books.forEach((book) => {
 
 // Add Event Listener on Add Book button
 const addBookForm = document.getElementById('add-book-form');
-
 addBookForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  addBook({
-    title: addBookForm.elements.title.value,
-    author: addBookForm.elements.author.value,
-  });
+  library.addBook(new Book(addBookForm.elements.title.value, addBookForm.elements.author.value));
 });
