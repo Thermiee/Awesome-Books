@@ -95,11 +95,12 @@ function displayNewElement(book) {
   removeButton.textContent = 'Remove';
 
   bookDiv.innerHTML = `
-    <h2 class="book-title">${book.title}</h2>
-    <p class="book-author">${book.author}</p>
+  <div class="bookstore">
+    <h2 class="book-title">"${book.title}"</h2>
+    <p class="book-author">by ${book.author}</p>
+    </div>
   `;
   bookDiv.appendChild(removeButton);
-  bookDiv.appendChild(document.createElement('hr'));
 
   booksList.appendChild(bookDiv);
 
