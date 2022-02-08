@@ -79,7 +79,7 @@ npx eslint .
 
 👤 **Awais Amjed**
 
-- GitHub: [@Thermiee](https://github.com/awais-amjed)
+- GitHub: [@Awais Amjed](https://github.com/awais-amjed)
 
 
 ## 🤝 Contributing
