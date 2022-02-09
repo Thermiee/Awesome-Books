@@ -4,20 +4,23 @@
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
+header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  margin: 10px 10%;
+}
+
 #navbar {
   border: 3px solid;
-  margin: 10px 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   height: 30px;
-  position: fixed;
-  right: 0;
-  left: 0;
 }
 
-#navbar ul{
+#navbar ul {
   display: flex;
   list-style: none;
   gap: 10px;
@@ -34,6 +37,10 @@
 #navbar a {
   text-decoration: none;
   color: black;
+}
+
+#current-date {
+  float: right;
 }
 
 #headline {
@@ -184,7 +191,7 @@ button.remove-button {
   gap: 20px;
 }
 
-#contact-info h1{
+#contact-info h1 {
   text-align: center;
   font-size: 30px;
   margin-bottom: 50px;

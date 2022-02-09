@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 
-<body>
+<body onload=display_ct();>
+    <header>
     <nav id="navbar">
         <a href="">Awesome Books</a>
         <ul>
@@ -30,7 +31,12 @@
             </li>
         </ul>
     </nav>
+    <div id="current-date">
 
+    </div>
+</header>
+    
+<main>
     <section id="awesome-books">
         <h1>All awesome books</h1>
         <div id="books-list">
@@ -57,6 +63,8 @@
             <li>Our address: Streetname 22, 84503 City, Country</li>
         </ul>
     </section>
+</main>
+    
 
     <footer>
        <p>  Copyright ... </p>
