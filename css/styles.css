@@ -9,7 +9,12 @@
   margin: 10px 10%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
+  height: 30px;
+  position: fixed;
+  right: 0;
+  left: 0;
 }
 
 #navbar ul{
@@ -72,29 +77,36 @@
   animation-iteration-count: infinite;
 }
 
+#awesome-books {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  margin: 0 10%;
+  align-items: center;
+  gap: 20px;
+}
+
 #books-list {
+  width: 100%;
   min-height: 200px;
   display: flex;
   flex-direction: column;
   border: 3px solid;
   border-radius: 5px;
-  margin: 0 10%;
+  max-height: 50vh;
+  overflow-y: scroll;
 }
 
 .book-store {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
 }
 
-hr {
-  margin: 20px auto 70px;
-  width: 100px;
-  border: 2px solid;
-  border-radius: 5px;
-}
-
 #input-form {
-  display: flex;
+  height: 100vh;
+  display: none;
   justify-content: center;
 }
 
@@ -164,30 +176,39 @@ button.remove-button {
 }
 
 #contact-info {
-  display: flex;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  margin: auto;
+  gap: 20px;
 }
 
 #contact-info h1{
-  padding: 8px;
-  margin-bottom: 50px;
   text-align: center;
   font-size: 30px;
-}
-
-#contact-info p {
-  padding: 8px;
-  margin: auto;
-  
+  margin-bottom: 50px;
 }
 
 #contact-info ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 8px;
-  margin: auto;
+  margin: 0 auto;
 }
-footer{
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
   border: 3px solid;
   margin: 10px 10%;
   padding: 10px;
+  height: 30px;
+}
+
+.active {
+  color: #3057c2 !important;
 }

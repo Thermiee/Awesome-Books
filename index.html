@@ -6,33 +6,38 @@
     <title>Awesome books</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/styles.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 
 <body>
     <nav id="navbar">
         <a href="">Awesome Books</a>
         <ul>
-        <li>
-            <a href="">List</a>
-        </li>
-        <div class="vl"></div>
-        <li>
-            <a href="">Add new</a>
-        </li>
-        <div class="vl"></div>
-        <li>
-            <a href="">Contact</a>
-        </li>
+            <li>
+                <a href="" id="show-list-button" class="active">List</a>
+            </li>
+            <li>
+                <div class="vl"></div>
+            </li>
+            <li>
+                <a href="" id="add-new-button">Add new</a>
+            </li>
+            <li>
+                <div class="vl"></div>
+            </li>
+            <li>
+                <a href="" id="contact-info-button">Contact</a>
+            </li>
         </ul>
     </nav>
-    <section id="headline">
+
+    <section id="awesome-books">
         <h1>All awesome books</h1>
+        <div id="books-list">
+
+        </div>
     </section>
 
-    <section id="books-list">
-
-    </section>
-    <hr>
     <section id="input-form">
         <form action="#" id="add-book-form">
             <h2>Add a new book</h2>
@@ -47,11 +52,10 @@
         <p>Do you have any questions or you just want to say "Hello"?
         <br>You can reach out to us!</p>
         <ul>
-        <li>Our e-mail: mail @mail.com</li>
-        <li>Our phone number: 0043580534422</li>
-        <li>Our address: Streetname 22, 84503 City, Country</li>
+            <li>Our e-mail: mail @mail.com</li>
+            <li>Our phone number: 0043580534422</li>
+            <li>Our address: Streetname 22, 84503 City, Country</li>
         </ul>
-        
     </section>
 
     <footer>
