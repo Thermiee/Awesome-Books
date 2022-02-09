@@ -197,15 +197,8 @@ addBookForm.addEventListener('submit', (event) => {
   showBooksList();
 });
 
-
-function display_c(){
-  var refresh=1000; // Refresh rate in milli seconds
-  mytime=setTimeout('display_ct()',refresh)
-  }
-  
-  function display_ct() {
-    var x = new Date()
-    var x1 =x.toLocaleString();// changing the display to UTC string
-    document.getElementById('current-date').innerHTML = x1;
-    tt=display_c();
-   }
+// eslint-disable-next-line no-unused-vars
+const displayTime = () => {
+  document.getElementById('current-date').innerHTML = new Date().toLocaleString();
+  setTimeout(displayTime, 1000);
+};
