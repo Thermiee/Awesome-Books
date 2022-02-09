@@ -35,8 +35,8 @@ class Library {
   // Library class consists of a list of books
   books = [];
 
-  constructor(books) {
-    this.books = books;
+  constructor() {
+    this.books = [];
   }
 
   bookExists(book) {
@@ -137,9 +137,68 @@ if (library.books.length === 0) {
   });
 }
 
+// Display Sections Dynamically
+const contactInfoSection = document.getElementById('contact-info');
+const inputFormSection = document.getElementById('input-form');
+const awesomeBooksSection = document.getElementById('awesome-books');
+const showListButton = document.getElementById('show-list-button');
+const addNewButton = document.getElementById('add-new-button');
+const contactInfoButton = document.getElementById('contact-info-button');
+
+const switchActive = (node) => {
+  if (showListButton !== node && showListButton.classList.contains('active')) {
+    showListButton.classList.remove('active');
+  } else if (addNewButton !== node && addNewButton.classList.contains('active')) {
+    addNewButton.classList.remove('active');
+  } else if (contactInfoButton !== node && contactInfoButton.classList.contains('active')) {
+    contactInfoButton.classList.remove('active');
+  }
+  node.classList.add('active');
+};
+
+const showBooksList = () => {
+  switchActive(showListButton);
+  awesomeBooksSection.style.display = 'flex';
+
+  contactInfoSection.style.display = 'none';
+  inputFormSection.style.display = 'none';
+};
+
+showListButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  showBooksList();
+});
+
+addNewButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  switchActive(addNewButton);
+  inputFormSection.style.display = 'flex';
+
+  contactInfoSection.style.display = 'none';
+  awesomeBooksSection.style.display = 'none';
+});
+
+contactInfoButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  switchActive(contactInfoButton);
+  contactInfoSection.style.display = 'flex';
+
+  awesomeBooksSection.style.display = 'none';
+  inputFormSection.style.display = 'none';
+});
+
 // Add Event Listener on Add Book button
 const addBookForm = document.getElementById('add-book-form');
 addBookForm.addEventListener('submit', (event) => {
   event.preventDefault();
   library.addBook(new Book(addBookForm.elements.title.value, addBookForm.elements.author.value));
+  addBookForm.elements.title.value = '';
+  addBookForm.elements.author.value = '';
+  showBooksList();
 });
+
+// eslint-disable-next-line no-unused-vars
+const displayTime = () => {
+  document.getElementById('current-date').innerHTML = new Date().toLocaleString();
+  setTimeout(displayTime, 1000);
+};
