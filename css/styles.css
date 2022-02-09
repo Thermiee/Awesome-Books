@@ -163,6 +163,29 @@ button.remove-button {
   margin: auto;
 }
 
+#contact-info {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+#contact-info h1{
+  padding: 8px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+#contact-info p {
+  padding: 8px;
+  margin: auto;
+  
+}
+
+#contact-info ul {
+  padding: 8px;
+  margin: auto;
+}
 footer{
   border: 3px solid;
   margin: 10px 10%;
