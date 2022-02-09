@@ -4,6 +4,33 @@
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
+#navbar {
+  border: 3px solid;
+  margin: 10px 10%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#navbar ul{
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: center;
+}
+
+.vl {
+  width: 3px;
+  height: 20px;
+  background-color: black;
+  border-radius: 10px;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: black;
+}
+
 #headline {
   margin-top: 20px;
   display: flex;
